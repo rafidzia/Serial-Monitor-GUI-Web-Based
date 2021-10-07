@@ -10,8 +10,15 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "nodemon": "^2.0.13",
+    "opener": "^1.5.2",
     "serialport": "^9.2.4",
     "socket.io": "^4.2.0"
+  },
+  "pkg": {
+    "assets": [
+      "public/index.html",
+      "public/script.js",
+      "node_modules/**"
+    ]
   }
 }

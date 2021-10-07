@@ -12,7 +12,41 @@ var send = document.getElementById("send");
 var send1 = document.getElementById("send1");
 var send2 = document.getElementById("send2");
 var clear = document.getElementById("clearmonit");
+var listports = document.getElementById("listports");
+var open = document.getElementById("open");
+var close = document.getElementById("close");
+var statport = document.getElementById("statport");
 var type = 1;
+var choport = "";
+
+socket.on("listports", (data) => {
+    listports.innerHTML = "";
+    data.forEach(ea => {
+        let newel = document.createElement("option");
+        newel.innerText = ea;
+        listports.appendChild(newel);
+    });
+    if (choport != "") {
+        listports.value = choport;
+    }
+})
+
+open.onclick = function (e) {
+    socket.emit("openport", listports.value)
+}
+
+close.onclick = function (e) {
+    socket.emit("closeport")
+}
+socket.on("portopened", (choosedport) => {
+    console.log(choosedport)
+    statport.style.backgroundColor = "lime";
+    listports.value = choosedport;
+})
+
+socket.on("portclosed", () => {
+    statport.style.backgroundColor = "crimson";
+})
 
 socket.on("datain", (data) => {
     semo.value += data;
@@ -45,9 +79,11 @@ send.onclick = function (e) {
 }
 
 send1.onclick = function (e) {
+    console.log("asd");
     socket.emit("datasoal5", "Data1?");
 }
 send2.onclick = function (e) {
+    console.log("dsa")
     socket.emit("datasoal5", "Data2?");
 }
 
@@ -153,4 +189,8 @@ dataoption.onchange = function (e) {
     data1.value = "";
     data2.value = "";
     data3.value = "";
+}
+
+listports.onchange = function (e) {
+    choport = listports.value;
 }
