@@ -10,10 +10,13 @@ const io = require('socket.io')(server, {
         origin: "*"
     }
 })
-app.use(express.static('public'))
+// app.use(express.static('public'))
+const view = require("./view")
+
 console.log('Socket-io server running on 8001.');
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/public/index.html")
+    res.set('Content-Type', 'text/html');
+    res.send(Buffer.from(view));
 })
 
 var port;

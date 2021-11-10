@@ -16,9 +16,7 @@
   },
   "pkg": {
     "assets": [
-      "public/index.html",
-      "public/script.js",
-      "node_modules/**"
+      "node_modules/*/**"
     ]
   }
 }

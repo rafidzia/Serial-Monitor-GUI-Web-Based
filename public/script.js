@@ -32,14 +32,13 @@ socket.on("listports", (data) => {
 })
 
 open.onclick = function (e) {
-    socket.emit("openport", listports.value)
+    socket.emit("openport", listports.value);
 }
 
 close.onclick = function (e) {
-    socket.emit("closeport")
+    socket.emit("closeport");
 }
 socket.on("portopened", (choosedport) => {
-    console.log(choosedport)
     statport.style.backgroundColor = "lime";
     listports.value = choosedport;
 })
@@ -83,7 +82,7 @@ send1.onclick = function (e) {
     socket.emit("datasoal5", "Data1?");
 }
 send2.onclick = function (e) {
-    console.log("dsa")
+    console.log("dsa");
     socket.emit("datasoal5", "Data2?");
 }
 
